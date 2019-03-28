@@ -1,0 +1,23 @@
+<div class="container">
+  <h1>new Data</h1>
+  <form [formGroup]= "form" (submit)="onSaveData()">
+    <mat-form-field>
+      <label>Title</label>
+      <input matInput type="text" formControlName = "title">
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    <mat-form-field>
+      <label>Content</label>
+      <input matInput type="text" formControlName = "content">
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    <mat-form-field>
+      <label>Status</label>
+      <input matInput type="text" formControlName = "status">
+    </mat-form-field>
+    <mat-divider></mat-divider>
+
+    <button type="submit">Submit</button>
+
+  </form>
+</div>

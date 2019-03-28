@@ -1,0 +1,12 @@
+<h1>Data list</h1>
+<mat-nav-list>
+  <mat-list-item *ngFor="let data of datas">
+    <h3 matSubHeader>{{data.title}}</h3>
+    <p>
+      <span matLine>{{data.content}}</span><br>
+      <span matLine>{{data.date}}</span><br>
+      <span>{{data.status}}</span>
+    </p>
+    <mat-divider></mat-divider>
+  </mat-list-item>
+</mat-nav-list>
