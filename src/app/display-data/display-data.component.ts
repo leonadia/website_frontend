@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {DataService} from '../data.service';
 import {Data} from '../data.model';
 import { Subscription } from 'rxjs';
+import { formArrayNameProvider } from '@angular/forms/src/directives/reactive_directives/form_group_name';
 
 @Component({
   selector: 'app-display-data',
@@ -24,6 +25,14 @@ export class DisplayDataComponent implements OnInit {
         this.datas = postData.datas;
         this.capOfData = postData.max;
       });
+  }
+
+  
+  onDeleteData(id: string) {
+    console.log(id);
+    this.ds.deleteData(id).subscribe(() => {
+      this.ds.getData();
+    }, () => {});
   }
 
 }

@@ -21,10 +21,26 @@ export class DataService {
 
   getData() {
     this.http.get<{message: string, datas:any, maxPosts: number}>(url)
+    .pipe(
+      map(fetchedData => {
+        return {
+          datas: fetchedData.datas.map(data => {
+            return {
+              title:data.title,
+              content:data.content,
+              id:data._id,
+              status: data.status,
+              date: data.date
+            }
+          }),
+          maxPosts: fetchedData.maxPosts
+        }
+      })
+    )
       .subscribe((fetchedData)=> {
         this.datas = fetchedData.datas;
         this.postsUpdated.next({
-          datas: fetchedData.datas,
+          datas: [...this.datas],
           max: fetchedData.maxPosts
         })
       });
@@ -49,6 +65,8 @@ export class DataService {
     })
 }
 
-deleteData
+  deleteData(id: string) {
+    return this.http.delete(url+"?id=" + id)
+  }
 
 }

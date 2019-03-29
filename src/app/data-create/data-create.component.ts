@@ -28,13 +28,11 @@ export class DataCreateComponent implements OnInit {
   }
 
   onSaveData() {
-    console.log(this.form.value.title)
-    console.log(this.form.value.content)
     this.ds.addPost(
       this.form.value.title,
       this.form.value.content,
       this.form .value.status
     );
+    this.form.reset();
   }
-
 }
