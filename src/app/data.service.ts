@@ -37,7 +37,7 @@ export class DataService {
         }
       })
     )
-      .subscribe((fetchedData)=> {
+    .subscribe((fetchedData)=> {
         this.datas = fetchedData.datas;
         this.postsUpdated.next({
           datas: [...this.datas],
@@ -61,7 +61,7 @@ export class DataService {
       reqData
     )
     .subscribe(res => {
-      this.router.navigate(["/"]);
+      window.location.reload()
     })
 }
 
