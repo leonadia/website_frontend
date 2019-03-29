@@ -1,12 +1,15 @@
-<h1>Data list</h1>
-<mat-nav-list>
-  <mat-list-item *ngFor="let data of datas">
-    <h3 matSubHeader>{{data.title}}</h3>
-    <p>
-      <span matLine>{{data.content}}</span><br>
-      <span matLine>{{data.date}}</span><br>
-      <span>{{data.status}}</span>
-    </p>
-    <mat-divider></mat-divider>
-  </mat-list-item>
-</mat-nav-list>
+<mat-card class="card"  *ngFor = "let data of datas">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{data.title}}</mat-card-title>
+    <mat-card-subtitle>{{data.date}}</mat-card-subtitle>
+    <mat-card-subtitle>{{data.status}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>{{data.content}}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>Edit</button>
+    <button mat-button>Delete</button>
+  </mat-card-actions>
+</mat-card>

@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 })
 export class DisplayDataComponent implements OnInit {
   
+  capOfData: number
   datas: Data[] = [];
   private datasSub: Subscription;
 
@@ -21,6 +22,7 @@ export class DisplayDataComponent implements OnInit {
       .getPostUpdateListener()
       .subscribe((postData: { datas: Data[]; max: number }) => {
         this.datas = postData.datas;
+        this.capOfData = postData.max;
       });
   }
 

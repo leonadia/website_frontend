@@ -14,6 +14,7 @@ const url = environment.apiUrl;
 })
 export class DataService {
 
+  resMessage: string;
   private datas: Data[] = [];
   private postsUpdated = new Subject<{datas: Data[]; max :number}>();
   constructor(private http: HttpClient, private router: Router) {}
@@ -22,9 +23,8 @@ export class DataService {
     this.http.get<{message: string, datas:any, maxPosts: number}>(url)
       .subscribe((fetchedData)=> {
         this.datas = fetchedData.datas;
-        console.log(url)
         this.postsUpdated.next({
-          datas: [...this.datas],
+          datas: fetchedData.datas,
           max: fetchedData.maxPosts
         })
       });
@@ -35,17 +35,20 @@ export class DataService {
   }
 
   addPost(title: string, content: string, status: string) {
-    const postData = new FormData();
-    postData.append("title", title);
-    postData.append("content", content);
-    postData.append("status", status);
-    this.http
-      .post<{ message: string, data: Data }>(
-        url,
-        postData
-      )
-      .subscribe(responseData => {
-        console.log(responseData)
-      });
-  }
+    const reqData = {
+      'title': title,
+      'content': content,
+      'status': status
+    };
+    this.http.post<{message: string; datas: Data}>(
+      url,
+      reqData
+    )
+    .subscribe(res => {
+      this.router.navigate(["/"]);
+    })
+}
+
+deleteData
+
 }
