@@ -13,12 +13,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { DataCreateComponent } from './data-create/data-create.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
+import { EmojiModule } from 'angular-emoji/dist';
+import { ToolbarComponent } from './display-data/toolbar/toolbar.component';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
     AppComponent,
     DisplayDataComponent,
-    DataCreateComponent
+    DataCreateComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +35,9 @@ import {MatInputModule} from '@angular/material/input';
     ReactiveFormsModule,
     FormsModule,
     MatInputModule,
-    MatCardModule
+    MatCardModule,
+    EmojiModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

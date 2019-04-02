@@ -1,5 +1,4 @@
 <div class="container">
-  <h1>new Data</h1>
   <form [formGroup]= "form" (submit)="onSaveData()">
     <mat-form-field>
       <label>Title</label>
@@ -13,7 +12,11 @@
     <mat-divider></mat-divider>
     <mat-form-field>
       <label>Status</label>
-      <input matInput type="text" formControlName = "status">
+      <mat-select [formControl]="status">
+        <mat-option *ngFor = "let emoji of emojis" [value] = "emoji.value">
+          {{emoji.veiwValue}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
     <mat-divider></mat-divider>
 

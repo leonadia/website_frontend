@@ -1,7 +1,16 @@
+.container {
+  width: 80%;
+  position: relative;
+  margin-left: 10%;
+  margin-bottom: 30px;
+  border-style: inset;
+}
+
 mat-form-field,
 textarea {
   width: 100%;
   border-bottom: 1px, black;
+  margin-bottom: 5px;
 }
 
 label {

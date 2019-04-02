@@ -5,6 +5,11 @@ import {DataService} from '../data.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Data } from '../data.model';
 
+export interface Emoji {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-data-create',
   templateUrl: './data-create.component.html',
@@ -19,6 +24,13 @@ export class DataCreateComponent implements OnInit {
     public ds: DataService
   ) { }
 
+  emojis: Emoji[] = [
+    {value: 'normal', viewValue: 'normal'},
+    {value: 'happy', viewValue: 'happy'},
+    {value: 'sad', viewValue: 'sad'},
+    {value: 'excited', viewValue: 'excited'},
+  ]
+
   ngOnInit() {
     this.form = new FormGroup({
       title : new FormControl(null, {validators: [Validators.required, Validators.minLength(3)]}),
@@ -31,6 +43,7 @@ export class DataCreateComponent implements OnInit {
     this.ds.addPost(
       this.form.value.title,
       this.form.value.content,
+
       this.form .value.status
     );
     this.form.reset();

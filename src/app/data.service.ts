@@ -50,11 +50,14 @@ export class DataService {
     return this.postsUpdated.asObservable();
   }
 
+  
   addPost(title: string, content: string, status: string) {
+
+    const s = status || null;
     const reqData = {
       'title': title,
       'content': content,
-      'status': status
+      'status': s
     };
     this.http.post<{message: string; datas: Data}>(
       url,
