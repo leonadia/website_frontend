@@ -1,0 +1,16 @@
+<div class="main">
+    <img src="../../assets/images/hacker.jpg">
+    <h1>Leonadia</h1>
+    <h3>Entry level software engineer</h3>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Social meida
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="social_portal">
+          <img *ngFor = "let link of portal" src = "{{link.img}}" alt = "{{link.value}}" (click) = "OnJump(link.link)">
+        </div>
+      </mat-expansion-panel>
+</div>
+

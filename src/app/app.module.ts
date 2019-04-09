@@ -16,13 +16,19 @@ import {MatInputModule} from '@angular/material/input';
 import { EmojiModule } from 'angular-emoji/dist';
 import { ToolbarComponent } from './display-data/toolbar/toolbar.component';
 import {MatSelectModule} from '@angular/material/select';
+import {MatButtonModule} from '@angular/material/button';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { IntroComponent } from './intro/intro.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     AppComponent,
     DisplayDataComponent,
     DataCreateComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    IntroComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +43,11 @@ import {MatSelectModule} from '@angular/material/select';
     MatInputModule,
     MatCardModule,
     EmojiModule,
-    MatSelectModule
+    MatSelectModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatExpansionModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

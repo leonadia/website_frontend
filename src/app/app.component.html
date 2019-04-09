@@ -1,5 +1,13 @@
-<h1>
-  Hello there
-</h1>
-<app-data-create></app-data-create>
-<app-display-data></app-display-data>
+<mat-drawer-container class="example-container">
+    <mat-drawer mode="side" opened>
+      <app-intro></app-intro>
+    </mat-drawer>
+    <mat-drawer-content>
+        <div id="editor" >
+            <app-data-create [style.visibility] = "vis"></app-data-create>
+            <button mat-raised-button color="primary" (click)="triggerEdit()">New!</button>
+        </div>
+        <app-display-data></app-display-data>
+    </mat-drawer-content>
+  </mat-drawer-container>
+

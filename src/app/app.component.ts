@@ -6,4 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  vis: string = 'hidden';
+  triggerEdit() {
+    if(this.vis == 'hidden') {
+      this.vis = "";
+    }
+    else {
+      this.vis = 'hidden';
+    }
+  }
 }
