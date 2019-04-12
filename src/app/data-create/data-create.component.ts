@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import {DataService} from '../data.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -21,7 +21,8 @@ export class DataCreateComponent implements OnInit {
   data: Data;
 
   constructor(
-    public ds: DataService
+    public ds: DataService,
+    public dialogRef: MatDialogRef<DataCreateComponent>
   ) { }
 
   emojis: Emoji[] = [
@@ -47,5 +48,11 @@ export class DataCreateComponent implements OnInit {
       this.form .value.status
     );
     this.form.reset();
+    this.dialogRef.close();
+  }
+
+  cancelPost(): void {
+    this.form.reset();
+    this.dialogRef.close();
   }
 }

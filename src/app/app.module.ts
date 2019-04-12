@@ -21,6 +21,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { IntroComponent } from './intro/intro.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
+import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -47,9 +48,15 @@ import {MatIconModule} from '@angular/material/icon';
     MatButtonModule,
     MatSidenavModule,
     MatExpansionModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule
   ],
-  providers: [],
+  entryComponents: [
+    DataCreateComponent
+  ],
+  providers: [
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
