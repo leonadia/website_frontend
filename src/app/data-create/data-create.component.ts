@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import {DataService} from '../data.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -19,10 +20,12 @@ export class DataCreateComponent implements OnInit {
 
   form : FormGroup;
   data: Data;
+  mode: string;
 
   constructor(
-    public ds: DataService
-  ) { }
+    public ds: DataService,
+    public dialogRef: MatDialogRef<DataCreateComponent>,
+    @Inject(MAT_DIALOG_DATA) public toUpdataData: any) { }
 
   emojis: Emoji[] = [
     {value: 'normal', viewValue: 'normal'},
@@ -37,15 +40,34 @@ export class DataCreateComponent implements OnInit {
       content: new FormControl(null,{validators: [Validators.required]}),
       status: new FormControl(null, {validators: [Validators.maxLength(15)]})
     })
+    this.mode = this.toUpdataData.mode;
   }
 
   onSaveData() {
-    this.ds.addPost(
-      this.form.value.title,
-      this.form.value.content,
+    if(this.mode==='create') {
+      this.ds.addPost(
+        this.form.value.title,
+        this.form.value.content,
+        this.form .value.status
+      );
+      this.form.reset();
+      this.dialogRef.close();
+    }
+    else {
+      this.ds.updataData(
+        this.toUpdataData.data.id,
+        this.form.value.title,
+        this.form.value.content,
+        this.form .value.status
+      );
 
-      this.form .value.status
-    );
-    this.form.reset();
+      this.form.reset();
+      this.dialogRef.close();
+      }  
   }
+
+  onCancel() {
+    this.dialogRef.close();
+  }
+  
 }

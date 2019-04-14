@@ -69,7 +69,25 @@ export class DataService {
 }
 
   deleteData(id: string) {
-    return this.http.delete(url+"?id=" + id)
+    return this.http.delete(url+"?id=" + id);
   }
+
+  updataData(id: string, title: string, content: string, status: string) {
+
+    const s = status || null;
+    const reqData = {
+      'id': id,
+      'title': title,
+      'content': content,
+      'status': status
+    };
+    this.http.put<{message: string; datas: Data}>(
+      url + "?id=" + id,
+      reqData
+    )
+    .subscribe(res => {
+      window.location.reload()
+    })
+}
 
 }
