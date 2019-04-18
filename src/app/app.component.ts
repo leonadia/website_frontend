@@ -21,4 +21,6 @@ export class AppComponent {
       console.log('The dialog was closed');
     });
   }
+
+  
 }
