@@ -8,21 +8,26 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DisplayDataComponent } from './display-data/display-data.component';
+import { DisplayDataComponent } from './blog/display-data/display-data.component'
 import { HttpClientModule } from '@angular/common/http';
-import { DataCreateComponent } from './data-create/data-create.component';
+import { DataCreateComponent } from './blog/data-create/data-create.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import { EmojiModule } from 'angular-emoji/dist';
-import { ToolbarComponent } from './display-data/toolbar/toolbar.component';
+import { ToolbarComponent } from './blog/display-data/toolbar/toolbar.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { IntroComponent } from './intro/intro.component';
+import { IntroComponent } from './blog/intro/intro.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
+import { HeaderComponent } from './header/header.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { BlogComponent } from './blog/blog.component';
+import { FunToyComponent } from './fun-toy/fun-toy.component';
+import { VoteMachineComponent } from './fun-toy/vote-machine/vote-machine.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +35,11 @@ import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dia
     DisplayDataComponent,
     DataCreateComponent,
     ToolbarComponent,
-    IntroComponent
+    IntroComponent,
+    HeaderComponent,
+    BlogComponent,
+    FunToyComponent,
+    VoteMachineComponent
   ],
   imports: [
     BrowserModule,
@@ -50,10 +59,12 @@ import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dia
     MatSidenavModule,
     MatExpansionModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    MatToolbarModule
   ],
   entryComponents: [
-    DataCreateComponent
+    DataCreateComponent,
+    VoteMachineComponent
   ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}

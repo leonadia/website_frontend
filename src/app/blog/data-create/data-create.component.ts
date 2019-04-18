@@ -1,10 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
-import {DataService} from '../data.service';
+import {DataService} from '../../data.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Data } from '../data.model';
+import { Data } from '../../data.model';
 
 export interface Emoji {
   value: string;

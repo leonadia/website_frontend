@@ -1,15 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {DataCreateComponent} from './blog/data-create/data-create.component'
+import {DataCreateComponent} from './data-create/data-create.component'
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'app-blog',
+  templateUrl: './blog.component.html',
+  styleUrls: ['./blog.component.scss']
 })
-export class AppComponent {
+export class BlogComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog:MatDialog) {}
+
+  ngOnInit() {
+  }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DataCreateComponent, {
@@ -21,4 +24,5 @@ export class AppComponent {
       console.log('The dialog was closed');
     });
   }
+
 }
