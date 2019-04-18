@@ -1,11 +1,14 @@
-<form>
-  <mat-form-field>
-    <mat-label>Question</mat-label>
-    <input matInput type= "text" FormControlName = "question" required>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Options</mat-label>
-    <input matInput type = "text" FromControlName = optionCount required>
-  </mat-form-field>
-  <button mat-raised-button>add more options</button>
-</form>
+<div>
+  <form>
+    <mat-form-field>
+      <mat-label>Question</mat-label>
+      <input matInput type= "text" FormControlName = "question" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Options</mat-label>
+      <input matInput type = "text" FromControlName = optionCount required>
+    </mat-form-field>
+    <button mat-raised-button (click)="addOption()">add more options</button>
+  </form>
+</div>
+

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { count } from 'rxjs/operators';
+import { strictEqual } from 'assert';
+import { stringify } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-vote-machine',
@@ -10,8 +12,8 @@ import { count } from 'rxjs/operators';
 export class VoteMachineComponent implements OnInit {
 
   form:FormGroup;
-  optionCount:string;
-  count: number = 0
+  count: number = 0;
+  htmlItem:string;
 
   constructor() { }
 
@@ -19,6 +21,8 @@ export class VoteMachineComponent implements OnInit {
   }
 
   addOption() {
-    this.optionCount = this.optionCount + count.toString;
+    let label:string = "option";
+    label = label + this.count.toString();
+    this.count++;
   }
 }
