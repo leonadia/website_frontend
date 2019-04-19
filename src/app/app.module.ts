@@ -13,7 +13,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { DataCreateComponent } from './blog/data-create/data-create.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
-import { EmojiModule } from 'angular-emoji/dist';
 import { ToolbarComponent } from './blog/display-data/toolbar/toolbar.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
@@ -53,7 +52,6 @@ import { VoteMachineComponent } from './fun-toy/vote-machine/vote-machine.compon
     FormsModule,
     MatInputModule,
     MatCardModule,
-    EmojiModule,
     MatSelectModule,
     MatButtonModule,
     MatSidenavModule,
