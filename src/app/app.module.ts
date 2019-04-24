@@ -27,6 +27,9 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { BlogComponent } from './blog/blog.component';
 import { FunToyComponent } from './fun-toy/fun-toy.component';
 import { VoteMachineComponent } from './fun-toy/vote-machine/vote-machine.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { LoginComponent } from './auth/login/login.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,9 @@ import { VoteMachineComponent } from './fun-toy/vote-machine/vote-machine.compon
     HeaderComponent,
     BlogComponent,
     FunToyComponent,
-    VoteMachineComponent
+    VoteMachineComponent,
+    SignupComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +63,8 @@ import { VoteMachineComponent } from './fun-toy/vote-machine/vote-machine.compon
     MatExpansionModule,
     MatIconModule,
     MatDialogModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatProgressSpinnerModule
   ],
   entryComponents: [
     DataCreateComponent,
