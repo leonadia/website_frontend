@@ -64,7 +64,7 @@ export class DataService {
       reqData
     )
     .subscribe(res => {
-      window.location.reload()
+      window.location.reload();
     })
 }
 

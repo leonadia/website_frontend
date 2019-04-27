@@ -26,9 +26,8 @@ export class LoginComponent implements OnInit {
     if (form.invalid) {
       return;
     }
-    console.log(form.value.name)
     this.isLoading = true;
-    this.authService.login(form.value.name, form.value.password);
+    this.authService.login(form.value.name, form.value.password, this.authService.getUserId());
   }
 
   ngOnDestroy() {
