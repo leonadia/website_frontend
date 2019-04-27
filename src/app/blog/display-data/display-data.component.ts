@@ -15,7 +15,6 @@ export class DisplayDataComponent implements OnInit {
   datas: Data[] = [];
   private datasSub: Subscription;
   isLoading: boolean = false;
-  private postsSub: Subscription;
   private authStatusSub: Subscription;
   userIsAuthenticated = false;
   userId: string;
@@ -31,6 +30,7 @@ export class DisplayDataComponent implements OnInit {
       .getPostUpdateListener()
       .subscribe((postData: { datas: Data[]; max: number }) => {
         this.datas = postData.datas;
+        this.datas = this.datas.reverse();
         this.capOfData = postData.max;
         this.isLoading = false;
       });

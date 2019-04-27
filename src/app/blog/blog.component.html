@@ -3,7 +3,7 @@
     <app-intro></app-intro>
   </mat-drawer>
   <mat-drawer-content>
-      <div id="editor" >
+      <div  *ngIf="userIsAuthenticated" id="editor" >
           <button mat-raised-button color="primary" (click)="openDialog()">New!</button>
       </div>
       <app-display-data></app-display-data>
