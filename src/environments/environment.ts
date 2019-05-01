@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: "https://leonadia-backend.herokuapp.com/guanli",
+  apiUrl: "http://localhost:3000/guanli",
   userApiUrl:"https://leonadia-backend.herokuapp.com/yonghu"
 };
 

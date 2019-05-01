@@ -1,14 +1,19 @@
 <div>
-  <form>
-    <mat-form-field>
-      <mat-label>Question</mat-label>
-      <input matInput type= "text" FormControlName = "question" required>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Options</mat-label>
-      <input matInput type = "text" FromControlName = optionCount required>
-    </mat-form-field>
-    <button mat-raised-button (click)="addOption()">add more options</button>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+ 
+    <div *ngFor="let question of questions" class="form-row">
+      <app-form-question [question]="question" [form]="form"></app-form-question>
+    </div>
+ 
+    <div class="form-row">
+      <button type="button" (click)="addOption()">Add Option</button>
+    </div>
+    <div class="form-row">
+      <button type="submit" [disabled]="!form.valid">Save</button>
+    </div>
   </form>
+ 
+  <div *ngIf="payLoad" class="form-row">
+    <strong>Saved the following values</strong><br>{{payLoad}}
+  </div>
 </div>
-

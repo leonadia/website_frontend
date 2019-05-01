@@ -5,7 +5,8 @@ import { map } from "rxjs/operators";
 import { Router } from "@angular/router";
 
 import {Data} from './data.model';
-import {environment} from '../environments/environment'
+import {environment} from '../../environments/environment'
+import { AuthService } from '../auth/auth.service';
 
 const url = environment.apiUrl;
 
@@ -17,10 +18,10 @@ export class DataService {
   resMessage: string;
   private datas: Data[] = [];
   private postsUpdated = new Subject<{datas: Data[]; max :number}>();
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private authService: AuthService) {}
 
   getData() {
-    this.http.get<{message: string, datas:any, maxPosts: number}>(url)
+    this.http.get<{message: string, datas:any, maxPosts: number}>(url + "?userId=" + this.authService.getUserId())
     .pipe(
       map(fetchedData => {
         return {

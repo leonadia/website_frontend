@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {DataService} from '../../data.service'
-import {Data} from '../../data.model';
+import {DataService} from '../data.service'
+import {Data} from '../data.model';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 

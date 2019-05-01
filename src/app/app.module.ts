@@ -31,6 +31,8 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { LoginComponent } from './auth/login/login.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { AuthInterceptor } from './auth/auth-interceptor';
+import { FormQuestionComponent } from './fun-toy/vote-machine/form-question/form-question.component';
+import { QuestionService } from './fun-toy/vote-machine/question.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { AuthInterceptor } from './auth/auth-interceptor';
     FunToyComponent,
     VoteMachineComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    FormQuestionComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +76,8 @@ import { AuthInterceptor } from './auth/auth-interceptor';
   ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    {provide:QuestionService, useClass: QuestionService}
   ],
   bootstrap: [AppComponent]
 })

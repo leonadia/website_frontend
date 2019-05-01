@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {DataService} from '../../../data.service';
-import {Data} from '../../../data.model'
+import {DataService} from '../../data.service';
+import {Data} from '../../data.model'
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {DataCreateComponent} from '../../data-create/data-create.component'
 

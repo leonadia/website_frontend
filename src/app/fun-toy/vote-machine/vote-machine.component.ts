@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { count } from 'rxjs/operators';
-import { strictEqual } from 'assert';
-import { stringify } from '@angular/compiler/src/util';
+import { QuestionBase } from './question-base';
+import {QuestionService} from './question.service';
+import { QuestionControlService } from './question-control.service';
 
 @Component({
   selector: 'app-vote-machine',
@@ -11,18 +11,22 @@ import { stringify } from '@angular/compiler/src/util';
 })
 export class VoteMachineComponent implements OnInit {
 
-  form:FormGroup;
-  count: number = 0;
-  htmlItem:string;
-
-  constructor() { }
-
+  @Input() questions: QuestionBase<any>[] = [];
+  form: FormGroup;
+  payLoad = '';
+ 
+  constructor(private qcs: QuestionControlService, private questionService:QuestionService) {  }
+ 
   ngOnInit() {
+    this.form = this.qcs.toFormGroup(this.questions);
   }
-
+  
   addOption() {
-    let label:string = "option";
-    label = label + this.count.toString();
-    this.count++;
+    this. questions = this.questionService.addQuestion();
+    this.form = this.qcs.toFormGroup(this.questions);
+  }
+ 
+  onSubmit() {
+    this.payLoad = JSON.stringify(this.form.value);
   }
 }

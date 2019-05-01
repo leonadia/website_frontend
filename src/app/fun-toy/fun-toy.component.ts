@@ -1,15 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { VoteMachineComponent } from './vote-machine/vote-machine.component';
+import {QuestionService} from './vote-machine/question.service'
 
 @Component({
   selector: 'app-fun-toy',
   templateUrl: './fun-toy.component.html',
-  styleUrls: ['./fun-toy.component.scss']
+  styleUrls: ['./fun-toy.component.scss'],
+  providers: [QuestionService]
 })
 export class FunToyComponent implements OnInit {
 
-  constructor(public dialog:MatDialog) { }
+  questions: any[]
+  constructor(public dialog:MatDialog, public questionService: QuestionService) {
+    this.questions = questionService.getQuestions();
+   }
 
   ngOnInit() {
   }
