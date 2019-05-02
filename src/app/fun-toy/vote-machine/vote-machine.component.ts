@@ -11,22 +11,13 @@ import { QuestionControlService } from './question-control.service';
 })
 export class VoteMachineComponent implements OnInit {
 
-  @Input() questions: QuestionBase<any>[] = [];
-  form: FormGroup;
-  payLoad = '';
+  questions: any[]
  
-  constructor(private qcs: QuestionControlService, private questionService:QuestionService) {  }
+  constructor(private qcs: QuestionControlService, private questionService:QuestionService) { 
+    this.questions = questionService.getQuestions();
+   }
  
   ngOnInit() {
-    this.form = this.qcs.toFormGroup(this.questions);
   }
   
-  addOption() {
-    this. questions = this.questionService.addQuestion();
-    this.form = this.qcs.toFormGroup(this.questions);
-  }
- 
-  onSubmit() {
-    this.payLoad = JSON.stringify(this.form.value);
-  }
 }

@@ -33,6 +33,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { AuthInterceptor } from './auth/auth-interceptor';
 import { FormQuestionComponent } from './fun-toy/vote-machine/form-question/form-question.component';
 import { QuestionService } from './fun-toy/vote-machine/question.service';
+import { QuestionListComponent } from './fun-toy/vote-machine/question-list/question-list.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { QuestionService } from './fun-toy/vote-machine/question.service';
     VoteMachineComponent,
     SignupComponent,
     LoginComponent,
-    FormQuestionComponent
+    FormQuestionComponent,
+    QuestionListComponent
   ],
   imports: [
     BrowserModule,

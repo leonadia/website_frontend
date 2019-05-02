@@ -19,7 +19,8 @@ export class QuestionService {
       label:'new question',
       value:'new question',
       required: true,
-      order: this.order
+      order: this.order,
+      type: 'text'
     })
     this.order++;
     this.questions.push(question);
