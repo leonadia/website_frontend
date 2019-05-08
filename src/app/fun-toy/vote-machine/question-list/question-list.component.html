@@ -1,14 +1,12 @@
-<div>
+<div style.visiblity = "vis">
   <form (ngSubmit)="onSubmit()" [formGroup]="form">
  
     <div *ngFor="let question of questions" class="form-row">
       <app-form-question [question]="question" [form]="form"></app-form-question>
     </div>
  
-    <div class="form-row">
+    <div class="btn">
       <button mat-raised-button type="button" (click)="addOption()">Add Option</button>
-    </div>
-    <div class="form-row">
       <button mat-raised-button type="submit" [disabled]="!form.valid">Save</button>
     </div>
   </form>

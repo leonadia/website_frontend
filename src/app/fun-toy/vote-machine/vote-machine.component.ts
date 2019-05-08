@@ -11,13 +11,14 @@ import { QuestionControlService } from './question-control.service';
 })
 export class VoteMachineComponent implements OnInit {
 
-  questions: any[]
+  questions: any[];
+  form: FormGroup;
  
   constructor(private qcs: QuestionControlService, private questionService:QuestionService) { 
+    questionService.initQuestion();
     this.questions = questionService.getQuestions();
    }
  
-  ngOnInit() {
-  }
+  ngOnInit() {}
   
 }

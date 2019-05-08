@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { QuestionBase } from './question-base';
 import { DropdownQuestion } from './question-dropdown';
 import { TextboxQuestion } from './question-textbox';
+import { _countGroupLabelsBeforeOption } from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
@@ -9,58 +10,51 @@ import { TextboxQuestion } from './question-textbox';
 export class QuestionService {
 
   private questions: QuestionBase<any>[];
-  private order: number = 4;
+  private order: number = 3;
+  private labelStr: String = 'Option' + (this.order -1).toString();
   
   constructor() { }
 
+  initQuestion() {
+    this.questions = [
+ 
+      new TextboxQuestion({
+        key: 'Question',
+        label: 'Question',
+        value: '',
+        required: true,
+        order: 1
+      }),
+ 
+      new TextboxQuestion({
+        key: 'Option1',
+        label: 'Option1',
+        type: 'text',
+        order: 2
+      })
+    ];
+    this.questions.sort((a, b) => a.order - b.order);
+  }
+
   addQuestion () {
     let question = new TextboxQuestion({
-      key:'new',
-      label:'new question',
-      value:'new question',
+      key:this.labelStr,
+      label:this.labelStr,
+      value:'',
       required: true,
       order: this.order,
       type: 'text'
     })
     this.order++;
     this.questions.push(question);
+    this.questions.sort((a, b) => a.order - b.order);
+  }
 
-    return this.questions.sort((a, b) => a.order - b.order);
-
+  saveValue() {
+    
   }
 
   getQuestions() {
- 
-      this.questions = [
- 
-      new DropdownQuestion({
-        key: 'brave',
-        label: 'Bravery Rating',
-        options: [
-          {key: 'solid',  value: 'Solid'},
-          {key: 'great',  value: 'Great'},
-          {key: 'good',   value: 'Good'},
-          {key: 'unproven', value: 'Unproven'}
-        ],
-        order: 3
-      }),
- 
-      new TextboxQuestion({
-        key: 'firstName',
-        label: 'First name',
-        value: 'Bombasto',
-        required: true,
-        order: 1
-      }),
- 
-      new TextboxQuestion({
-        key: 'emailAddress',
-        label: 'Email',
-        type: 'email',
-        order: 2
-      })
-    ];
- 
-    return this.questions.sort((a, b) => a.order - b.order);
+    return this.questions;
   }
 }

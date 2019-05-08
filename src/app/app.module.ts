@@ -34,6 +34,7 @@ import { AuthInterceptor } from './auth/auth-interceptor';
 import { FormQuestionComponent } from './fun-toy/vote-machine/form-question/form-question.component';
 import { QuestionService } from './fun-toy/vote-machine/question.service';
 import { QuestionListComponent } from './fun-toy/vote-machine/question-list/question-list.component';
+import { DrawerComponent } from './fun-toy/drawer/drawer.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { QuestionListComponent } from './fun-toy/vote-machine/question-list/ques
     SignupComponent,
     LoginComponent,
     FormQuestionComponent,
-    QuestionListComponent
+    QuestionListComponent,
+    DrawerComponent
   ],
   imports: [
     BrowserModule,

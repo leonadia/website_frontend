@@ -14,7 +14,7 @@ export class QuestionListComponent implements OnInit {
   @Input() questions: QuestionBase<any>[] = [];
   form: FormGroup;
   payLoad = '';
- 
+  vis:boolean = true;
   constructor(private qcs: QuestionControlService, private questionService:QuestionService) {  }
  
   ngOnInit() {
@@ -22,12 +22,14 @@ export class QuestionListComponent implements OnInit {
   }
   
   addOption() {
-    this. questions = this.questionService.addQuestion();
+    this.questionService.addQuestion();
+    this.questions = this.questionService.getQuestions();
     this.form = this.qcs.toFormGroup(this.questions);
   }
  
   onSubmit() {
     this.payLoad = JSON.stringify(this.form.value);
+    this.vis = false;
   }
 
 }
