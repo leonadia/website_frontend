@@ -17,7 +17,7 @@ export class DrawerComponent implements OnInit {
 
     this.ctx =   this.canvas.nativeElement.getContext('2d');
 
-    this.canvas.nativeElement.height = window.innerHeight;
+    this.canvas.nativeElement.height = window.innerHeight-200;
     this.canvas.nativeElement.width = window.innerWidth;
 
     let draw = (e) => {
@@ -25,11 +25,10 @@ export class DrawerComponent implements OnInit {
 
       this.ctx.lineWidth = 10;
       this.ctx.lineCap = "round"
-      this.ctx.lineTo(e.clientX, e.clientY-80);
+      this.ctx.lineTo(e.clientX, e.clientY-180);
       this.ctx.stroke()
       this.ctx.beginPath();
-      this.ctx.moveTo(e.clientX, e.clientY-80);
-      console.log(e.clientX, e.clientY)
+      this.ctx.moveTo(e.clientX, e.clientY-180);
     }
 
     this.canvas.nativeElement.addEventListener('mousedown', (e) =>{
@@ -41,9 +40,11 @@ export class DrawerComponent implements OnInit {
       this.ctx.beginPath();
     })
     this.canvas.nativeElement.addEventListener('mousemove', draw);
-
     
   }
 
-
+  resetCanvas() {
+    this.canvas.nativeElement.width = this.canvas.nativeElement.width;
+    console.log("reset")
+  }
 }
