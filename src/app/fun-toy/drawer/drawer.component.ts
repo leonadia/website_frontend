@@ -11,6 +11,7 @@ export class DrawerComponent implements OnInit {
   @ViewChild('canvas') canvas: ElementRef;
   ctx: CanvasRenderingContext2D;
   painting = false;
+  mousePos = { x:0, y:0 };
   constructor() { }
 
   ngOnInit() {
@@ -31,15 +32,48 @@ export class DrawerComponent implements OnInit {
       this.ctx.moveTo(e.clientX, e.clientY-180);
     }
 
+    let getTouchPos = (dom, touchEvent) => {
+      var rect = dom.nativeElement.getBoundingClientRect();
+      return {
+        x: touchEvent.touches[0].clientX - rect.left,
+        y: touchEvent.touches[0].clientY - rect.top
+      };
+    }
+
     this.canvas.nativeElement.addEventListener('mousedown', (e) =>{
       this.painting = true;
-      draw(e)
+      draw(e);
     })
     this.canvas.nativeElement.addEventListener('mouseup', ()=>{
       this.painting = false;
       this.ctx.beginPath();
     })
     this.canvas.nativeElement.addEventListener('mousemove', draw);
+
+    this.canvas.nativeElement.addEventListener('touchstart', (e) => {
+      this.mousePos = getTouchPos(this.canvas, e);
+      var touch = e.touches[0];
+      var mouseEvent = new MouseEvent("mousedown", {
+        clientX: touch.clientX,
+        clientY: touch.clientY
+      });
+      this.canvas.nativeElement.dispatchEvent(mouseEvent);
+    },false)
+    
+    this.canvas.nativeElement.addEventListener("touchend", (e) => {
+      var mouseEvent = new MouseEvent("mouseup", {});
+     this.canvas.nativeElement.dispatchEvent(mouseEvent);
+    }, false);
+
+    this.canvas.nativeElement.addEventListener("touchmove", (e) => {
+      var touch = e.touches[0];
+      var mouseEvent = new MouseEvent("mousemove", {
+        clientX: touch.clientX,
+        clientY: touch.clientY
+      });
+    this.canvas.nativeElement.dispatchEvent(mouseEvent);
+    }, false);
+
     
   }
 
