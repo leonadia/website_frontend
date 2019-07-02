@@ -7,9 +7,13 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>Content</mat-label>
-      <div *ngIf ="mode==='create'"><input matInput type="text" formControlName = "content" required></div>
-      <div *ngIf ="mode==='edit'"><input matInput type="text" [value]="toUpdataData.data.content" formControlName = "content" required></div>
+      <div *ngIf ="mode==='create'"><textarea matInput rows="4" type="textarea" rows="4" formControlName = "content" required></textarea></div>
+      <div *ngIf ="mode==='edit'"><textarea matInput [value]="toUpdataData.data.content" formControlName = "content" required></textarea></div>
     </mat-form-field>
+    <button mat-stroked-button type="button" (click)="filePicker.click()">Pick Image</button>
+    <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid">
+      <img [src]="imagePreview" [alt]="form.value.title">
+    </div>
     <mat-form-field>
       <mat-label>Status</mat-label>
       <mat-select formControlName="status">
@@ -20,6 +24,9 @@
     </mat-form-field>
     <button *ngIf = "mode === 'create'" mat-raised-button type="submit">Submit</button>
     <button *ngIf = "mode === 'edit'" mat-raised-button type="submit">Modified</button>
+    <input type="file" #filePicker (change)="onImagePicked($event)">
     <button mat-raised-button type="button" (click)="onCancel()">Cancel</button>
+    <br>
+    <mat-checkbox formControlName = "top">Make it Top</mat-checkbox>
   </form>
 </div>

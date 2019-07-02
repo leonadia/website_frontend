@@ -35,6 +35,7 @@ import { FormQuestionComponent } from './fun-toy/vote-machine/form-question/form
 import { QuestionService } from './fun-toy/vote-machine/question.service';
 import { QuestionListComponent } from './fun-toy/vote-machine/question-list/question-list.component';
 import { DrawerComponent } from './fun-toy/drawer/drawer.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { DrawerComponent } from './fun-toy/drawer/drawer.component';
     MatIconModule,
     MatDialogModule,
     MatToolbarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatCheckboxModule
   ],
   entryComponents: [
     DataCreateComponent,

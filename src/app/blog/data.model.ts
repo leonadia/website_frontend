@@ -4,4 +4,6 @@ export interface Data {
     content: string;
     status: string;
     date: string;
+    top: boolean;
+    imagePath: string;
 }

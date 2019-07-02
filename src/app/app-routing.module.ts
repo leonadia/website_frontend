@@ -8,7 +8,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { DrawerComponent } from './fun-toy/drawer/drawer.component';
 
 const routes: Routes = [
-  { path: 'blog', component: BlogComponent },
+  { path: '', component: BlogComponent},
   { path: 'funToy', component: FunToyComponent},
   {path: 'funToy/vote-machine', component: VoteMachineComponent},
   {path: 'signUp', component: SignupComponent},

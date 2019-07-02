@@ -77,7 +77,7 @@ export class AuthService {
             );
             console.log(expirationDate);
             this.saveAuthData(token, expirationDate, this.userId, this.name);
-            this.router.navigate(["/blog"]);
+            this.router.navigate(["/"]);
           }
         },
         error => {

@@ -8,7 +8,7 @@ import {Data} from './data.model';
 import {environment} from '../../environments/environment'
 import { AuthService } from '../auth/auth.service';
 
-const url = environment.apiUrl;
+const URL = environment.apiUrl;
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class DataService {
   constructor(private http: HttpClient, private router: Router, private authService: AuthService) {}
 
   getData() {
-    this.http.get<{message: string, datas:any, maxPosts: number}>(url + "?userId=" + this.authService.getUserId())
+    this.http.get<{message: string, datas:any, maxPosts: number}>(URL + "?userId=" + this.authService.getUserId())
     .pipe(
       map(fetchedData => {
         return {
@@ -31,7 +31,9 @@ export class DataService {
               content:data.content,
               id:data._id,
               status: data.status,
-              date: data.date
+              date: data.date,
+              top: data.top,
+              imagePath: data.imagePath
             }
           }),
           maxPosts: fetchedData.maxPosts
@@ -52,38 +54,61 @@ export class DataService {
   }
 
   
-  addPost(title: string, content: string, status: string) {
+  addPost(title: string, content: string, status: string, top: boolean, image: File) {
 
     const s = status || null;
-    const reqData = {
-      'title': title,
-      'content': content,
-      'status': s
-    };
-    this.http.post<{message: string; datas: Data}>(
-      url,
-      reqData
-    )
-    .subscribe(res => {
-      window.location.reload();
-    })
+    const i = image || null;
+
+    if(i == null) {
+      const formData = ({
+        'title': title,
+        'content': content,
+        'status': s,
+        'top': top
+      })
+      this.http.post<{message: string; data: Data}>(
+        URL,
+        formData
+      )
+      .subscribe(res => {
+        window.location.reload();
+      })
+    }
+    else {
+      let url = URL +"upload/";
+      const formData = new FormData();
+      formData.append('title', title);
+      formData.append('content',content);
+      formData.append('status', s);
+      formData.append('image',image, title);
+      this.http.post<{message: string; data: Data}>(
+        url,
+        formData
+      )
+      .subscribe(res => {
+        window.location.reload();
+      })
+    }
+
 }
 
   deleteData(id: string) {
-    return this.http.delete(url+"?id=" + id);
+    return this.http.delete(URL+"?id=" + id);
   }
 
-  updataData(id: string, title: string, content: string, status: string) {
+  updataData(id: string, title: string, content: string, status: string, top: boolean, image: File) {
 
     const s = status || null;
     const reqData = {
       'id': id,
       'title': title,
       'content': content,
-      'status': status
+      'status': status,
+      'top': top,
+      "image": image
     };
-    this.http.put<{message: string; datas: Data}>(
-      url + "?id=" + id,
+    this.http.put<{message: string; data: Data}>(
+      URL + "?id=" + id,
       reqData
     )
     .subscribe(res => {
