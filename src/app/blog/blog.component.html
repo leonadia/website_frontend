@@ -1,6 +1,6 @@
 <mat-drawer-container class="container">
   <mat-drawer mode="side" opened>
-    <app-intro></app-intro>
+    <app-intro *ngIf="userIsAuthenticated"></app-intro>
   </mat-drawer>
   <mat-drawer-content>
       <div  *ngIf="userIsAuthenticated" id="editor" >

@@ -14,6 +14,8 @@ export class AuthService {
     private tokenTimer: any;
     private userId: string;
     private name:string;
+    private bio: string;
+    private avatarPath: string;
     private authStatusListener = new Subject<boolean>();
   
     constructor(private http: HttpClient, private router: Router) {}
@@ -34,13 +36,28 @@ export class AuthService {
         return this.name;
       }
 
+      getBio() {
+        return this.bio;
+      }
+
+      getAvatarPath() {
+        return this.avatarPath;
+      }
       getAuthStatusListener() {
         return this.authStatusListener.asObservable();
       }
 
       
-    createUser(name: string, psword: string, email?:string) {
-        const authData: AuthData = {name: name, psword: psword, email: email};
+    createUser(name: string, psword: string, email?:string, bio?: string, avatar? :File ) {
+        let e = email || null;
+        let a = avatar || null;
+
+        const authData: AuthData = {'name':name, 'psword':psword}
+        //const authData = new FormData();
+        // authData.append('name',name);
+        // authData.append('psword', psword);
+        // authData.append('email',e);
+        // authData.append('avatar', a, name);
         this.http.post(url + "/signup", authData).subscribe(
         () => {
             this.router.navigate(["/blog"]);
@@ -55,7 +72,7 @@ export class AuthService {
   login(name: string, password: string, id: string) {
     const authData: AuthData = { name: name, psword:password};
     this.http
-      .post<{ token: string; expiresIn: number; userId: string; name:string }>(
+      .post<{ token: string; expiresIn: number; userId: string; name:string; bio:string; avatarPath:string }>(
         url + "/login",
         authData
       )
@@ -69,6 +86,8 @@ export class AuthService {
             this.isAuthenticated = true;
             this.userId = response.userId;
             this.name = response.name;
+            this.bio = response.bio;
+            this.avatarPath=response.avatarPath;
 
             this.authStatusListener.next(true);
             const now = new Date();

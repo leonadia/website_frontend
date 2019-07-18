@@ -24,7 +24,7 @@ export class DataCreateComponent implements OnInit {
   form : FormGroup;
   data: Data;
   mode: string;
-  top: boolean = true;
+  top: boolean = false;
   isLoading = false;
   imagePreview: string;
   private dataId: string;

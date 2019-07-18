@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MatIconRegistry} from '@angular/material';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 
 export interface Portal {
   value: string;
@@ -14,8 +16,11 @@ export interface Portal {
   styleUrls: ['./intro.component.scss']
 })
 export class IntroComponent implements OnInit {
+  name: string;
+  private authStatusSub: Subscription;
+  userIsAuthenticated = false;
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, public auth:AuthService) {
     iconRegistry.addSvgIcon(
       'linkedin',
       sanitizer.bypassSecurityTrustResourceUrl('./assets/images/download.png'));
@@ -27,6 +32,15 @@ export class IntroComponent implements OnInit {
   ]
 
   ngOnInit() {
+    this.auth.autoAuthUser();
+    this.userIsAuthenticated = this.auth.getIsAuth();
+    this.authStatusSub = this.auth
+      .getAuthStatusListener()
+      .subscribe(isAuthenticated => {
+        this.userIsAuthenticated = isAuthenticated;
+        this.name = this.auth.getName();
+      });
+
   }
 
   OnJump(link:string) {

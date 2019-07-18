@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   apiUrl: "http://localhost:3000/guanli/",
-  userApiUrl:"http://localhost:3000/yonghu/"
+  userApiUrl:"http://localhost:3000/yonghu/",
+  profileUrl:"http://localhost:3000/ziliao/"
 };
 
 /*
